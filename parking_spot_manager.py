@@ -62,6 +62,10 @@ def filter_by_location(spots, locations): # 위치 필터링
     spots = [x for x in spots if locations[0] <= x.get_item('latitude') <= locations[1] and locations[2] <= x.get_item('longitude') <= locations[3]]
     return spots # 필터링한 리스트 반환
 
+def sort_by_keyword(spots, keyword):
+    spots.sort(key=lambda x : x.get_item(keyword)) # __item[keyword] 기준 오름차순으로 객체 리스트 정렬
+    return spots # 정렬된 리스트 반환
+
 
 # 각 단계별로 테스트 (테스트할때 주석해제 후 사용)
 if __name__ == '__main__':
@@ -73,9 +77,9 @@ if __name__ == '__main__':
     # print_spots(spots)
 
     # version#3
-    spots = filter_by_district(spots, '동작')
-    print_spots(spots)
+    # spots = filter_by_district(spots, '동작')
+    # print_spots(spots)
     
     # version#4
-    # spots = sort_by_keyword(spots, 'name')
-    # print_spots(spots)
+    spots = sort_by_keyword(spots, 'name')
+    print_spots(spots)

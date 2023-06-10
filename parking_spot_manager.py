@@ -41,6 +41,27 @@ def print_spots(spots):
     for spot in spots: # 객체 리스트에서 객체 하나씩 출력 (__str__)
         print(spot)
 
+def filter_by_name(spots, name): # 이름 필터링
+    spots = [x for x in spots if name in x.get_item('name')] # keyword(name) 문자열을 포함한 __item['name'] 값을 가진 객체 필터링하여 리스트 함축
+    return spots # 필터링한 리스트 반환
+
+def filter_by_city(spots, city): # 시도 필터링
+    spots = [x for x in spots if city in x.get_item('city')] # keyword(city) 문자열을 포함한 __item['city'] 값을 가진 객체 필터링하여 리스트 함축
+    return spots # 필터링한 리스트 반환
+
+def filter_by_district(spots, district): # 시군구 필터링
+    spots = [x for x in spots if district in x.get_item('district')] # keyword(district) 문자열을 포함한 __item['district'] 값을 가진 객체 필터링하여 리스트 함축
+    return spots # 필터링한 리스트 반환
+
+def filter_by_ptype(spots, ptype): # 주차장유형 필터링
+    spots = [x for x in spots if ptype in x.get_item('ptype')] # keyword(ptype) 문자열을 포함한 __item['ptype'] 값을 가진 객체 필터링하여 리스트 함축
+    return spots # 필터링한 리스트 반환
+
+def filter_by_location(spots, locations): # 위치 필터링
+    # min_lat 이상이고 max_lat 이하의 __item['latitude'] 값을 가지고, min_long 이상이고 max_long 이하의 __item['longitude'] 값을 가지는 객체 필터링하여 리스트 함축
+    spots = [x for x in spots if locations[0] <= x.get_item('latitude') <= locations[1] and locations[2] <= x.get_item('longitude') <= locations[3]]
+    return spots # 필터링한 리스트 반환
+
 
 # 각 단계별로 테스트 (테스트할때 주석해제 후 사용)
 if __name__ == '__main__':
@@ -49,11 +70,11 @@ if __name__ == '__main__':
     import file_manager
     str_list = file_manager.read_file("./input/free_parking_spot_seoul.csv")
     spots = str_list_to_class_list(str_list)
-    print_spots(spots)
+    # print_spots(spots)
 
     # version#3
-    # spots = filter_by_district(spots, '동작')
-    # print_spots(spots)
+    spots = filter_by_district(spots, '동작')
+    print_spots(spots)
     
     # version#4
     # spots = sort_by_keyword(spots, 'name')

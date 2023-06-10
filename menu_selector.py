@@ -24,27 +24,23 @@ def start_process(path):
             select = int(input('type:'))
             if select == 1:
                 keyword = input('type name:')
-                print("not implemented yet")
-                # fill this block
+                spots = parking_spot_manager.filter_by_name(spots, keyword) # 필터 수행 및 반환되는 새로운 리스트로 기존 리스트 대체
             elif select == 2:
                 keyword = input('type city:')
-                print("not implemented yet")
-                # fill this block
+                spots = parking_spot_manager.filter_by_city(spots, keyword) # 필터 수행 및 반환되는 새로운 리스트로 기존 리스트 대체
             elif select == 3:
                 keyword = input('type district:')
-                print("not implemented yet")
-                # fill this block
+                spots = parking_spot_manager.filter_by_district(spots, keyword) # 필터 수행 및 반환되는 새로운 리스트로 기존 리스트 대체
             elif select == 4:
                 keyword = input('type ptype:')
-                print("not implemented yet")
-                # fill this block
+                spots = parking_spot_manager.filter_by_ptype(spots, keyword) # 필터 수행 및 반환되는 새로운 리스트로 기존 리스트 대체
             elif select == 5:
                 min_lat = float(input('type min lat:'))
                 max_lat = float(input('type max lat:'))
                 min_lon = float(input('type min long:'))
                 max_lon = float(input('type max long:'))
-                print("not implemented yet")
-                # fill this block
+                location = (min_lat, max_lat, min_lon, max_lon) # 위치 필터링 조건을 튜플로 저장
+                spots = parking_spot_manager.filter_by_location(spots, location) # 필터 수행 및 반환되는 새로운 리스트로 기존 리스트 대체
             else:
                 print("invalid input")
         elif select == 3:
